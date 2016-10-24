@@ -12,16 +12,19 @@ import android.support.v7.widget.Toolbar;
 import com.ifam.appcine.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
-public class PrincipalActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
+    private static int posicao = 2;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private String[] semana = {"Seg","Ter","Qua","Qui","Sex"};
-    private String[] fimSemana = {"Dom","Sab"};
+    private String[] semana = {"Dom","Seg","Ter","Qua","Qui","Sex","Sab"};
 
 
     @Override
@@ -34,10 +37,23 @@ public class PrincipalActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         onCreateTabNavegacao(viewPager);
+        viewPager.setCurrentItem(diaSemana());
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+    }
+
+    private int diaSemana(){
+        try {
+            Date dia = new Date();
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(dia);
+            return calendar.get(Calendar.DAY_OF_WEEK)-1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     private void onCreateTabNavegacao(ViewPager viewPager) {
@@ -50,13 +66,11 @@ public class PrincipalActivity extends AppCompatActivity {
         */
         for(int z=0; z < semana.length; z++){
             if( z==0 ){
-                adapter.addFrag(new FimSemana(), fimSemana[z]);
-                adapter.addFrag(new Semana(), semana[z]);
-            }else if(z != semana.length-1){
-                adapter.addFrag(new Semana(), semana[z]);
+                adapter.addFrag(new FimSemana(), semana[z]);
+            }else if(z == semana.length-1){
+                adapter.addFrag(new FimSemana(), semana[z]);
             }else{
                 adapter.addFrag(new Semana(), semana[z]);
-                adapter.addFrag(new FimSemana(), fimSemana[1]);
             }
             viewPager.setAdapter(adapter);
         }
