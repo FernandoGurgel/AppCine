@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:id="@+id/capa_filme_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:layout_marginRight="4dp"
+        android:layout_alignBottom="@id/capa_filme_item"
+        android:id="@+id/nome_filme_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-40dp"
+        android:text="Android Example"
+        android:textAlignment="center"
+        android:background="#a3000000"
+        android:padding="5dp"
+        android:textColor="#eee"
+        android:textStyle="bold|italic"/>
+
+
+</RelativeLayout>

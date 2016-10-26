@@ -1,5 +1,6 @@
 package com.ifam.appcine.view;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.ifam.appcine.R;
+import com.ifam.appcine.model.CinemaBean;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,7 +21,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int posicao = 2;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     class ViewPagerAdapter extends FragmentPagerAdapter {
 
         private final List<Fragment> fragmentList = new ArrayList<>();
@@ -106,4 +108,5 @@ public class MainActivity extends AppCompatActivity {
             return fragmentTitulo.get(position);
         }
     }
+
 }

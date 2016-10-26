@@ -9,8 +9,7 @@ import java.util.ArrayList;
 
 public class CinemaBean implements Serializable {
 
-    private String site;
-    private String cinema;
+    private ArrayList<String> cinema;
     private String filme;
     private String capa;
     private String duracao;
@@ -23,11 +22,10 @@ public class CinemaBean implements Serializable {
     private ArrayList<String> fim;
 
 
-    public CinemaBean(String site, String cinema, String filme, String capa, String duracao,
+    public CinemaBean(ArrayList<String> cinema, String filme, String capa, String duracao,
                       String sinopse, int classificao, String genero, String elenco, String diretor,
                       ArrayList<String> semana, ArrayList<String> fim) {
 
-        this.site = site;
         this.classificao = classificao;
         this.cinema = cinema;
         this.filme = filme;
@@ -39,6 +37,31 @@ public class CinemaBean implements Serializable {
         this.diretor = diretor;
         this.semana = semana;
         this.fim = fim;
+    }
+
+    public CinemaBean(String filme,String capa){
+        this.filme = filme;
+        this.capa = capa;
+    }
+
+    public ArrayList<String> getCinema() {
+        return cinema;
+    }
+    public String getCinemaIndex(int i) {
+        return cinema.get(i);
+    }
+
+
+    public void setCinema(ArrayList<String> cinema) {
+        this.cinema = cinema;
+    }
+
+    public void setClassificao(int classificao) {
+        this.classificao = classificao;
+    }
+
+    public int getClassificao() {
+        return classificao;
     }
 
     public ArrayList<String> getSemana() {
@@ -55,22 +78,6 @@ public class CinemaBean implements Serializable {
 
     public void setFim(ArrayList<String> fim) {
         this.fim = fim;
-    }
-
-    public String getSite() {
-        return site;
-    }
-
-    public void setSite(String site) {
-        this.site = site;
-    }
-
-    public String getCinema() {
-        return cinema;
-    }
-
-    public void setCinema(String cinema) {
-        this.cinema = cinema;
     }
 
     public String getFilme() {
@@ -127,5 +134,13 @@ public class CinemaBean implements Serializable {
 
     public void setDiretor(String diretor) {
         this.diretor = diretor;
+    }
+
+    public String getSemanaIndex(int a) {
+        return semana.get(a);
+    }
+
+    public String getFimIndex(int b) {
+        return fim.get(b);
     }
 }

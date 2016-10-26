@@ -19,25 +19,29 @@ public class CinemaDao implements Request.RequestListener {
 
     public final static int SEMANA = 1;
     public final static int FIMSEMANA = 0;
-
     private List<CinemaBean> listaCinema;
 
-    public CinemaDao() {
-        Ocean.newRequest("https://gist.githubusercontent.com/FernandoGurgel/56f009a61aa9978210481df011f5588b/raw/656a855ee35c125530e1a7569789c4889745b13b/AppCinema", this).get().send();
-    }
 
     public List<CinemaBean> carregaFilmes(){
+        Ocean.newRequest("https://gist.githubusercontent.com/FernandoGurgel/56f009a61aa9978210481df011f5588b/raw/656a855ee35c125530e1a7569789c4889745b13b/AppCinema", this).get().send();
+        return getListaCinema();
+    }
+
+
+    public List<CinemaBean> getListaCinema() {
         return listaCinema;
     }
 
+    public void setListaCinema(List<CinemaBean> listaCinema) {
+        this.listaCinema = listaCinema;
+    }
 
     @Override
     public void onRequestOk(String s, JSONObject jsonObject, int i) {
 
-        listaCinema = new ArrayList<CinemaBean>();
-        ArrayList<CinemaBean> cinemas = new ArrayList<CinemaBean>();
         ArrayList<String> semana;
         ArrayList<String> fimSemana;
+        List<CinemaBean> lista = new ArrayList<CinemaBean>();
 
         if(i == Request.NENHUM_ERROR){
 
@@ -72,20 +76,18 @@ public class CinemaDao implements Request.RequestListener {
                                     fimSemana.add(fimHoras.getString(d));
                                 }
 
-                                CinemaBean bean = new CinemaBean(cinema.getString("site"),
-                                       cinema.getString("nome"),filme.getString("filme"),
-                                        filme.getString("capa"),filme.getString("duração"),
-                                        filme.getString("sinopse"),filme.getInt("classificacao"),
-                                        filme.getString("genero"),filme.getString("elenco"),
-                                        filme.getString("diretor"),semana,fimSemana);
+//                                CinemaBean bean = new CinemaBean(cinema.getString("site"),
+//                                       cinema.getString("nome"),filme.getString("filme"),
+//                                        filme.getString("capa"),filme.getString("duração"),
+//                                        filme.getString("sinopse"),filme.getInt("classificacao"),
+//                                        filme.getString("genero"),filme.getString("elenco"),
+//                                        filme.getString("diretor"),semana,fimSemana);
 
-                                cinemas.add(bean);
+//                                lista.add(bean);
                             }
                         }
                     }
-                    listaCinema = cinemas;
-
-                    Log.d("fer",listaCinema+"");
+                    setListaCinema(lista);
                 }catch (JSONException e){
                     Log.d("fer","error JSON \n"+e.toString());
                 }
